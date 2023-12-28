@@ -24,7 +24,7 @@ Breakpoint 1 at 0x63e: file source/break.c, line 4.
 (gdb) break 9
 Breakpoint 2 at 0x655: file source/break.c, line 11.
 (gdb) run
-Starting program: /home/student/Desktop/Øving - 4/programs/break
+Starting program: /home/student/Desktop/Oving - 4/programs/break
 Breakpoint 2, main () at source/break.c:11
 \end{lstlisting}
 
@@ -51,14 +51,14 @@ Num    Type       Disp    Enb     Address             What
 
 Vi kan nå kalle \verb|condition 3 i > 80| for å endre betingelsen til \textit{breakpoint} nummer 3 til å kunne aktiveres dersom \verb|i| er større enn 80. Nå kan dere kalle \verb|continue|, etterfulgt av \verb|print i|, som vil demonstrere at vi faktisk bare stopper når vi vil:
 
-\begin{lstlisting}[mathescape=true,keywordstyle=\color{black}]
+\begin{verbatim}
 (gdb) condition 3 i > 80
 (gdb) continue
 Continuing.
 Breakpoint 3, main () at source/break.c:14
 (gdb) print i
 $2 = 81
-\end{lstlisting}
+\end{verbatim}
 
 Vi kan fjerne betingelsen fra \textit{breakpoint} 3 ved å simpelthen kalle \verb|condition 3|. Om vi nå kaller \verb|continue| vil vi derimot stoppe i \verb|for|-løkken hver gang, fordi \verb|i| nå alltid er større enn 80. Om vi er ferdig med \textit{breakpoint} 3, kan vi skru det av ved å kalle \verb|disable 3| - dette vil endre \verb|Enb|-feltet (Enable) fra \verb|y| til \verb|n|:
 
@@ -212,7 +212,7 @@ Kall først \verb|make trace| for å kompilere programmet \verb|trace|, etterful
 (gdb) watch global_value
 Hardware watchpoint 1: global_value
 (gdb) run
-Starting program: /home/student/Desktop/Øving - 4/programs/trace
+Starting program: /home/student/Desktop/Oving - 4/programs/trace
 
 Hardware watchpoint 1: global_value
 
