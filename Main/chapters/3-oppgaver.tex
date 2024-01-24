@@ -325,7 +325,7 @@ i = -4
 
 Det er nå åpenbart hva som foregår - vi teller nedover, når vi skulle ha telt oppover. Dette kommer av at vi har skrevet \verb|i--| i løkken, mens vi egentlig mente \verb|i++|.
 
-\subsubsection{Tilleggs-kommentarer til Segfault}
+\subsubsection{Tilleggskommentarer til Segfault}
 
 Noen ganger så er man så uheldige at man ikke får generert en segfault til tross for at det er ting som man ikke burde gjort med minnet. Et eksempel får man ved å kompilere programmet \verb|seg2|. Om man kjører \verb|seg2|, med \verb|make seg2| og \verb|./seg2| får vi et program som allokerer ved \textit{compile time} et array av heltall, med størrelse 200. Programmet vil deretter prøve å skrive over 240 av disse elementene. Altså vil programmet prøve å skrive til 40 minnesegmenter som programmet egentlig ikke eier eller har allokert. 
 
@@ -363,4 +363,6 @@ Dersom man kaller \verb|make leak| fra kommandolinjen for å kompilere programme
 
 
 Dette er en oppsummering av \verb|heap|-forbruk i løpet av programmets levetid. Som man kan se, har vi mistet 48 bytes fordi vi ikke frigjør allokeringen vi gjør. Valgrind hjelper oss også med å se hvor lekkasjen skjer; vi kan se av \textit{stack-tracen} at vi fra \verb|main| kaller \verb|create_array|, som deretter kaller \verb|malloc| uten at \verb|free| kalles noe sted.
+
+\section{Oppgave (frivillig) - GDB i Visual Studio Code}
 
