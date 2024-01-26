@@ -63,142 +63,53 @@ Når dere kjører et program vil dere som regel ikke jobbe direkte med informasj
 
 Uheldigvis er det ganske vanlig at man har et array som ikke tar en hel \textit{page}. Dermed kan man gjøre ulovlige minne-operasjoner så lenge man er `heldig' og treffer en \textit{page} som man har aksess-rettigheter til. En \textit{out-of-bounds} på ett element vil derfor ikke alltid gi en segfault, som det burde.
 
-\section{Appendiks - Debugging av mikrokontrollere}\label{app:debugg-micro}
-Det er mulig å bruke GDB for å debugge mikrokontrollere, så lenge man har en måte å kommunisere debuggingssignaler til hardwaret. I tillegg må hardwaret også støtte debugging, men dette er stort sett garantert i nye mikrokontrollere. Det er mange måter å gå frem - men her er en rask innføring som viser hvordan man kan debugge micro:bit-en som er brukt i faget med SWD (\textbf{s}ingle \textbf{w}ire \textbf{d}ebugging). Framgangsmåten for å debugge mikrokontrollere er forskjellig fra plattform til plattform ettersom de har ulike debuggingsgrensesnitt, men som oftest er Google veldig behjelpelig om  man søker: \verb|"How to set up GDB server on ..."|.
+\section{Appendiks - Windows Subsystem for Linux (WSL)}\label{app:wsl}
+Windows Subsystem for Linux (WSL) er en snedig måte å kjøre Linux på Windows uten å ha en ekstra partisjon på harddisken. Tidligere var såkalte \textit{virtual boxes} en populær måte å kjøre Linux på Windows på, men på grunn av dårlig ytelse blir dette lite brukt i dag. WSL gir deg muligheten til å kjøre en valgfri Linux-distribusjon fra terminalen uten noe særlig \textit{overhead}, og detta er jo stas! Stegene som presenteres i denne guiden er hentet \href{https://learn.microsoft.com/en-us/windows/wsl/install}{herfra}.
 
-\subsection{Server}
+\begin{enumerate}
+    \item Trykk \verb|Windows + R|
+    \item Skriv inn \verb|cmd| og trykk \verb|Enter|
+    \item Skriv inn \verb|wsl --install| i terminalen og trykk \verb|Enter|
+\end{enumerate}
 
-Det første som kreves i det generelle tilfellet er et serverprogram som kjører på målhardwaret som blir debugget. Dette vil tillate en GDB-klient å koble seg til over en seriell linje, eller over en TCP/IP-forbindelse. Fordi micro:bit-en allerede støtter SWD, trenger man ikke å kompilere serveren selv. En kan da bruke andre verktøy som er i stand til å bruke SWD, og så koble GDB-klienten til dette verktøyet (se figur \ref{fig:4-SWD-connection})
+Det var alt som trengtes for å installere WSL. Hvis du nå vil bruke Ubuntu trenger du bare å skrive \verb|ubuntu| i Windows-terminalen og trykke \verb|Enter|. Det er også mulig å installere andre distribusjoner enn \verb|Ubuntu|, men som sagt er dette distribusjonen som brukes på Sanntidssalen, og vi velger derfor denne her.
 
-\begin{figure}[ht]
-    \centering
-    
+\section{Appendiks - VSCode og WSL}\label{app:wsl+vscode}
+Når WSL er installert på Windows kan man åpne det gjennom å skrive \verb|ubuntu| i \verb|Command Prompt| eller \verb|PowerShell|. Deretter følger vi \href{https://code.visualstudio.com/docs/setup/linux}{denne guiden} for å installere VSCode i WSL. Dersom man allerede har VSCode installert på Windows-maskina, så har man også muligheten til å kjøre det gjennom WSL, og man trenger ikke laste det ned på nytt, og dette anbefales også. Har man derimot ikke VSCode installert, kan man gjøre følgende steg for å installere det manuelt:
 
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{lstlisting}[language=bash]
+sudo apt-get install wget gpg
 
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1.3,xscale=1.3]
-%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 
-%Shape: Rectangle [id:dp2040495981987429] 
-\draw   (276,162) -- (346,162) -- (346,202) -- (276,202) -- cycle ;
-%Shape: Rectangle [id:dp8791019060072369] 
-\draw   (141,162) -- (211,162) -- (211,202) -- (141,202) -- cycle ;
-%Shape: Rectangle [id:dp34562906859358766] 
-\draw   (411,162) -- (481,162) -- (481,202) -- (411,202) -- cycle ;
-%Shape: Rectangle [id:dp10020003065736183] 
-\draw   (141,49) -- (211,49) -- (211,89) -- (141,89) -- cycle ;
-%Shape: Rectangle [id:dp4454199949106217] 
-\draw   (411,49) -- (481,49) -- (481,89) -- (411,89) -- cycle ;
-%Straight Lines [id:da46711444160880555] 
-\draw    (214,69) -- (408,69) ;
-\draw [shift={(411,69)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-\draw [shift={(211,69)}, rotate = 0] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-%Shape: Brace [id:dp12694272910051874] 
-\draw   (140.23,96.27) .. controls (140.23,100.94) and (142.56,103.27) .. (147.23,103.27) -- (165.87,103.25) .. controls (172.54,103.24) and (175.87,105.57) .. (175.88,110.24) .. controls (175.87,105.57) and (179.2,103.23) .. (185.87,103.22)(182.87,103.23) -- (204.51,103.21) .. controls (209.18,103.2) and (211.51,100.87) .. (211.5,96.2) ;
-%Shape: Brace [id:dp849533451177146] 
-\draw   (411.23,96.27) .. controls (411.23,100.94) and (413.56,103.27) .. (418.23,103.27) -- (436.87,103.25) .. controls (443.54,103.24) and (446.87,105.57) .. (446.88,110.24) .. controls (446.87,105.57) and (450.2,103.23) .. (456.87,103.22)(453.87,103.23) -- (475.51,103.21) .. controls (480.18,103.2) and (482.51,100.87) .. (482.5,96.2) ;
-%Shape: Brace [id:dp048064701846972424] 
-\draw   (139.23,210.27) .. controls (139.23,214.94) and (141.56,217.27) .. (146.23,217.27) -- (233.87,217.24) .. controls (240.54,217.24) and (243.87,219.57) .. (243.87,224.24) .. controls (243.87,219.57) and (247.2,217.24) .. (253.87,217.23)(250.87,217.23) -- (341.5,217.2) .. controls (346.17,217.2) and (348.5,214.87) .. (348.5,210.2) ;
-%Shape: Brace [id:dp19293139300351636] 
-\draw   (411.23,210.27) .. controls (411.23,214.94) and (413.56,217.27) .. (418.23,217.27) -- (436.87,217.25) .. controls (443.54,217.24) and (446.87,219.57) .. (446.88,224.24) .. controls (446.87,219.57) and (450.2,217.23) .. (456.87,217.22)(453.87,217.23) -- (475.51,217.21) .. controls (480.18,217.2) and (482.51,214.87) .. (482.5,210.2) ;
-%Straight Lines [id:da7052759156801001] 
-\draw    (214,182) -- (273,182) ;
-\draw [shift={(276,182)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-\draw [shift={(211,182)}, rotate = 0] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-%Straight Lines [id:da7465676171907607] 
-\draw    (349,182) -- (408,182) ;
-\draw [shift={(411,182)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
-\draw [shift={(346,182)}, rotate = 0] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 
-% Text Node
-\draw (286,175) node [anchor=north west][inner sep=0.75pt]   [align=left] {`Server'};
-% Text Node
-\draw (161,175) node [anchor=north west][inner sep=0.75pt]   [align=left] {GDB};
-% Text Node
-\draw (423,175) node [anchor=north west][inner sep=0.75pt]   [align=left] {micro:bit};
-% Text Node
-\draw (161,62) node [anchor=north west][inner sep=0.75pt]   [align=left] {GDB};
-% Text Node
-\draw (429,62) node [anchor=north west][inner sep=0.75pt]   [align=left] {Server};
-% Text Node
-\draw (246,49) node [anchor=north west][inner sep=0.75pt]   [align=left] {TCP/IP eller Seriell};
-% Text Node
-\draw (164,114) node [anchor=north west][inner sep=0.75pt]   [align=left] {PC};
-% Text Node
-\draw (232,228) node [anchor=north west][inner sep=0.75pt]   [align=left] {PC};
-% Text Node
-\draw (413,115) node [anchor=north west][inner sep=0.75pt]   [align=left] {Hardware};
-% Text Node
-\draw (413,228) node [anchor=north west][inner sep=0.75pt]   [align=left] {Hardware};
-% Text Node
-\draw (362,163) node [anchor=north west][inner sep=0.75pt]   [align=left] {SWD};
-% Text Node
-\draw (220,163) node [anchor=north west][inner sep=0.75pt]   [align=left] {TCP/IP};
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 
-
-\end{tikzpicture}
-    \caption{Skjematisk illustrasjon av GDB sitt grensesnitt mot micro:bit-en.}
-    \label{fig:4-SWD-connection}
-\end{figure}
-
-
-Her tar `Server'-enheten seg av kommunikasjon med både GDB, og hardware, ved å abstrahere bort hvilken type forbindelse man har mellom datamaskinen og plattformen som blir debugget. 
-
-I prinsippet kan `Server' være hva som helst, så lenge det er et program som støtter kommandoer fra GDB, og er i stand til å kommunisere med målhardwaret. Programvaren OpenOCD (\textbf{Open} \textbf{O}n-\textbf{C}hip-\textbf{D}ebugger) er et godt valg her, og er den programvaren vi vil bruke i dette eksemplet.
-
-\subsection{Overføre koden vi ønsker å debugge}
-I eksempelmappen \verb|example_microbit| ligger det en simpel kode som dere kan kompiler og flashe ved å kalle \verb|make ; make flash|. Koden vil toogle LED-matrisen på hver rad så fort micro:bit-en kan.
-
-\subsection{OpenOCD}
-
-OpenOCD lar brukeren spesifisere hvordan vi skal kommunisere med hardware over en form for kobling som støtter debugging - eksempelvis JTAG, CMSIS-DAP, USB-Blaster, eller i vårt tilfelle; SWD.
-
-Før vi kan bruke OpenOCD, må vi installere programmet. Dette kan gjøres ved å kalle \verb|sudo apt install openocd| på datamaskinene på Sanntidssalen. 
-
-OpenOCD kan startes på to måter. Man kan enten spesifisere alle parametrene som er nødvendige for å definere kommunikasjonsprotokollen via kommandolinjen, eller man kan opprette en konfigurasjonsfil kalt \verb|openocd.cfg| i mappen man har prosjektet i. For gjenbrukbarhetens skyld er det bedre å benytte seg av konfigurasjonsfilen.
-
-I vårt tilfelle skal \verb|openocd.cfg| se slik ut:
-
-\begin{lstlisting}[mathescape=true]
-interface jlink
-transport select swd
-
-source [find target/nrf51.cfg]
-
-gdb_memory_map enable
+rm -f packages.microsoft.gpg
 \end{lstlisting}
 
+Deretter oppdaterer du pakke-\textit{cachen}, og og installerer pakken ved bruk av:
 
-Deretter starter vi koblingen mellom datamaskin og micro:biten ved å kalle \verb|sudo openocd| fra samme mappe som konfigurasjonsfilen ligger. Dette vil gi en output som ligner denne:
+\begin{lstlisting}[language=bash]
+sudo apt install apt-transport-https
 
-\begin{lstlisting}[mathescape=true]
-Open On-Chip Debugger 0.10.0
-Licensed under GNU GPL v2
-For bug reports, read
-        http://openocd.org/doc/doxygen/bugs.html
-cortex_m reset_config sysresetreq
-adapter speed: 1000 kHz
-Info : No device selected, using first device.
-Info : J-Link OB-BBC-microbit compiled Mar 24 2017 09:33:30
-Info : Hardware version: 1.00
-Info : VTarget = 3.300 V
-Info : clock speed 1000 kHz
-Info : SWD DPIDR 0x0bb11477
-Info : nrf51.cpu: hardware has 4 breakpoints, 2 watchpoints
+sudo apt update
+
+sudo apt install code # or code-insiders
 \end{lstlisting}
 
+Nå som du har VSCode, kan du bruke det gjennom WSL ved å skrive \verb|code .| i terminalen, for å åpne brukergrensesnittet i den mappen du nå befinner deg i. Dersom du ønsker å åpne en mappe eller fil i VSCode direkte kaller du \verb|code name|, der "name" byttes ut med navnet til filen eller mappa. Nå kjøres VSCode gjennom WSL, men det grafiske brukergrensesnittet minner veldig om slik det ville sett ut dersom det ble kjørt direkte fra Windows. Her får du imidlertid tilgang til et liknende miljø som på PCene i Sanntidssalen, og det er nøyaktig derfor vi presenterer denne måten å jobbe på.
 
-Dette betyr at OpenOCD er nå klar for å motta forespørsler over TCP/IP, som GDB kan koble seg til via. Om dere ikke spesifiserer noe annet, vil OpenOCD lytte på port 3333. \textcolor{RWTHrot100}{\textbf{Dere kan ikke bruke \texttt{nrfjprog} og \texttt{openocd} samtidig. Dere må altså lukke \texttt{openocd} før dere kaller \texttt{make flash}. Dette er igjen grunnet begrensninger i JLink-firmwaren på micro:bit-en!}}
+Dersom man av en eller annen grunn skulle få lyst til å avinstallere VSCode fra WSL, kan man bruke følgende kommando: \verb|sudo apt-get remove code|.
 
-\subsection{Debugging av micro:bit med GDB}
+\section{Appendiks - C/C++ i VSCode for WSL}\label{app:C_VSCode_WSL}
+For å kunne kompilere kode i VSCode for WSL, så er vi avhengige av riktig oppsett for kompilatoren og debuggeren vi skal bruke. Som dere er kjent med fra tidligere i denne øvingen skal vi bruke \verb|GCC| for å kompilere C/C++-kode, samt \verb|GDB| for debugging. Guiden vi skal følge er \href{https://code.visualstudio.com/docs/cpp/config-wsl}{denna her}.
 
-Dersom alt har blitt satt opp riktig, burde dere kunne starte GDB fra samme mappe, ved å kalle \verb|arm-none-eabi-gdb build/main.elf -iex "target remote| \verb| localhost:3333" -tui|. Vi bruker her \verb|arm-none-eabi|-prefikset for å spesifisere at dette er GDB bygget på ARM-baserte arkitekter, i motsetning til x86-64, som vi ellers bruker.
+\begin{enumerate}
+    \item Kjør \verb|sudo apt-get update|.
+    \item Kjør \verb|sudo apt-get install build-essential gdb|.
+    \item Sjekk at \verb|GDB| og \verb|GCC| er riktig installert ved kommandoene \verb|whereis gdb| og \verb|whereis gcc|. Dersom filplasseringene returneres bekrefter dette at installasjonene var vellykkede.
+\end{enumerate}
 
-
-
-Dersom man nå fra GDB kaller \verb|monitor reset halt|, etterfulgt av \verb|break main|, og deretter \verb|continue|, vil programmet på micro:bit-en kjøre gjennom oppstartskoden og stoppe ved første instruksjon i \verb|main|. I dette tilfellet er første instruksjon i \verb|main| definert som \verb|for|-løkken som konfigurer matrisen på micro:bit-en.
-
-Man kan nå kalle \verb|until| et par ganger, til dere stopper på første linje i \verb|while|-løkka. Dette kan ta litt tid, eventuelt kan det \textit{lagge} litt. Når man har kommet ned til \verb|GPIO->OUTSET...|, kan man bruke \verb|next| til å stoppe gjennom hver operasjon og se at matrisen på micro:bit-en skrur seg på- og av en rad av gangen.
-
-
-Stort sett er alle operasjonene som er tilgjengelig i vanlig GDB nå tilgjengelige for bruk på micro:bit-en. I tillegg til disse har man også en del hardwarespesifikke kommandoer; disse starter med \verb|monitor [...]|, eksempelvis kommandoen \verb|monitor reset halt|, som vil starte målet på nytt, og med en gang fryse programflyten.
+Nå som dere har \verb|GCC| og \verb|GDB| installert er dere i stand til å både kjøre og debugge C/C++-kode i VSCode. Hvordan dette gjøres lærer dere i avsnitt \ref{sec:debugging}.

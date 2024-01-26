@@ -1,4 +1,4 @@
-\section{Oppgave - Grunnleggende debugging med \texttt{gdb}}\label{sec:3-oppgave}
+\section{Oppgave - Grunnleggende debugging med \texttt{gdb} (obligatorisk)}\label{sec:3-oppgave}
 
 Denne øvingen er strukturert som en walkthrough. Gjennom øvingen skal dere kompilere feilaktige kodesnutter og debugge den med \verb|gdb|. Ofte vil feilene være veldig opplagt, men motstå allikevel fristelsen til å skippe over. Hensikten med denne øvingen, er at dere skal vite hvordan dere bruker GDB, så for å få godkjent, må dere vise en studass at dere til en viss grad forstår hva som skjer i denne øvingen. Terskelen er ikke altfor høy, og dere får ganske greit godkjent om dere viser at dere forstår hvordan dere kan debugge et vilkårlig program med GDB.
 
@@ -364,5 +364,52 @@ Dersom man kaller \verb|make leak| fra kommandolinjen for å kompilere programme
 
 Dette er en oppsummering av \verb|heap|-forbruk i løpet av programmets levetid. Som man kan se, har vi mistet 48 bytes fordi vi ikke frigjør allokeringen vi gjør. Valgrind hjelper oss også med å se hvor lekkasjen skjer; vi kan se av \textit{stack-tracen} at vi fra \verb|main| kaller \verb|create_array|, som deretter kaller \verb|malloc| uten at \verb|free| kalles noe sted.
 
-\section{Oppgave (frivillig) - GDB i Visual Studio Code}
+\section{Oppgave - Programvareutvikling i VSCode (anbefalt)}
 
+Selv om det det er nyttig å kunne bruke verktøy som GDB og Valgrind i terminal foregår majoriteten av all programvareutvikling i dag i moderne grensesnitt for kildekoderedigering. I denne oppgaven skal vi steg-for-steg gå gjennom stegene for hvordan man installerer og setter opp et moderne utviklingsmiljø i kildekoderedigeringsverktøyet {\it VSCode}. 
+
+\subsection{Litt om VSCode}
+
+VSCode, kort for {\it {Visual Studio Code}}, er et fritt\footnote{Utgitt med MIT-lisens} kildekoderedigeringsverktøy utgitt og vedlikeholdt av Microsoft, og er et av de mest populære moderne kildekoderedigeringsverktøyene brukt i dag. VSCode har et sterkt fokus på personlig konfigurering med bred støtte for tilleggsprogrammer eller {\it extensions}. Dette gjør det mulig for programvareutviklere (dere) å tilpasse utviklingsmiljøet til deres preferanser og arbeidsoppgaver.
+
+\subsection{Installasjon}
+
+De aller fleste datamaskinene på Sanntidssalen har allerede VSCode installert. Måten man kan sjekke om VSCode allerede er installert er via kommandoen \verb|code --version|\footnote{Versjonen til VSCode bør helst være 1.80 eller nyere.}. Dersom du ønsker å installere VSCode for å gjøre oppgaven på din egen maskin henviser vi til følgende lenker for Linux og MacOS:
+
+\begin{itemize}
+    \item \href{https://code.visualstudio.com/docs/setup/linux}{Installasjon av VSCode på Linux}
+    \item \href{https://code.visualstudio.com/docs/setup/mac}{Installasjon av VSCode på MacOS}
+\end{itemize}
+
+Derson du ønsker å gjøre øvingen på Windows ber vi deg lese gjennom Appendiks \ref{app:wsl}, \ref{app:wsl+vscode} og \ref{app:C_VSCode_WSL}. Merk at installasjon av utviklingsmiljø på egen maskin er frivillig, men anbefalt ettersom dere vil få bruk for utviklingsmiljøet i senere lab-oppgaver.
+
+\subsection{Konfigurasjonsfiler}
+Når man arbeider i VSCode er det hovedsaklig i såkalte \textit{workspaces}, og det er typisk at man har et \textit{workspace} per prosjekt man jobber med. Vanligvis gjør man \textit{root}-mappen til prosjektet til \textit{workspace}-mappe. 
+
+Det første VSCode vil lete etter når man åpner en arbeidsmappe er mappen \verb|.vscode|. Dette er mappen hvor alle de lokal konfigurasjonsfilene for VSCode lagres. VSCode har mange forskjellige typer konfigurasjonsfiler, men de viktigste er \verb|settings.json|, \verb|tasks.json| og \verb|launch.json|. Konfigurasjonsfilen \verb|settings.json| lagrer instillinger for \textit{workspace} ditt, som for eksempel hvilket språk du skriver og konfigurasjonen til utvidelsene du bruker. Konfigurasjonsfilen \verb|tasks.json| lar deg definere oppgaver eller \verb|tasks| du kan kjøre i VSCode. Eksempler på dette er \verb|Build| og \verb|Debug|. \verb|launch.json| er en fil som brukes til å konfigurere debuggeren i VSCode, og inneholder det meste av nødvendig informasjon for å komme i gang med debugging.
+
+I denne oppgaven vil dere få utdelt konfigurasjonsfiler tilpasset datamaskinene på Sanntidssalen, men konfigurasjonsfilene bør også fungere på de fleste Mac- og Linux-maskiner. Vi oppfordrer dere til å redigere og tilpasse konfigurasjonen til deres personlige datamaskin ved å se på dokumentasjonen til VSCode på nett. De utdelte konfigurasjonsfilene finner dere i mappen \verb|debugging_vscode/.vscode/| i kildefilene på Github.
+
+\subsection{Utvidelser}
+Dette avsnittet vil gi dere en liste over noen nyttige utvidelser, altså \textit{extensions} på engelsk, eller \textit{Erweiterungen} som det heter på tysk. I VSCode har man svært mange muligheter når det kommer til å konfigurere oppsettet slik man vil, og utvidelsene er et eksempel på dette. Derfor presenterer vi et knippe slike utvidelser, slik at dere kan bestemme selv hva dere ønsker å ta i bruk. I VSCode finner man utvidelsene i høyre \textit{sidebar} under \verb|Extensions|, eller ved å trykke \verb|Ctrl + Shift + X|.
+
+\begin{itemize}
+    \item \verb|C/C++|: \href{https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools}{mer info her}
+    \item \verb|C/C++ Extension Pack|: \href{https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack}{mer info her}
+    \item \verb|Clangd|: \href{https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd}{mer info her}
+    \item \verb|GitLens|: \href{https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens}{mer info her}
+    \item \verb|VSCode Icons|: \href{https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons}{mer info her}
+    \item \verb|Code Runner|: \href{https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner}{mer info her}
+    
+\end{itemize}
+
+De utdelte konfigurasjonsfilene tar i bruk Microsofts \verb|C/C++|, men dere har muligheten til å teste ulike kombinasjoner for å se hva som funker best for dere. Det er verdt å bemerke seg at ikke alle extensions er kompatible med hverandre.
+
+\subsubsection{Utvidelsen C/C++}
+Utvidelsen C/C++ for VSCode er et nyttig verktøy som er utviklet for å forenkle utvikling i C og C++. Det tilbyr funksjoner som IntelliSense for automatisk kodeforslag, feilsøkingsfunksjoner og enkel navigering. Utvidelsen støtter C/C++-utvikling på tvers av plattformer (MacOS/Windows/Linux),. Utvidelsen integreres med de bygge- og feilsøkingsverktøyene du velger, slik som \verb|gcc|, \verb|gdb|, \verb|lldb| og \verb|clang|. Se \href{https://code.visualstudio.com/docs/cpp/faq-cpp}{denne lenken} for mer informasjon.
+
+
+\subsection{Debugging i VSCode}\label{sec:debugging}
+Tidligere i denne øvingen har vi introdusert dere for ulike verktøy for debugging i terminalen, deriblant \textit{breakpoints}, \textit{watchpoints} og \textit{catchpoints}. Disse verktøyene, pluss flere, finnes også ved debugging i det grafiske brukergrensesnittet til VSCode. I denne oppgaven vil dere bruke dette til å debugge den utleverte filen \verb|character_count.c| for å utforske hvordan debugging gjøres i VSCode. Denne \verb|C|-filen som finnes i den utleverte koden i GitHub, under \verb|debugging_vscode|. Koden skal i utgangspunktet telle antall tomme og ikke-tomme \textit{characters} i en tekststreng som er definert i koden, men på grunn av logiske feil i koden fungerer den ikke. Vi henviser dere til \href{https://code.visualstudio.com/docs/editor/debugging}{VSCode sin dokumentasjon for debugging} for å løse denne oppgaven, og vi ber dere om å åpne VSCode i mappen \verb|debugging_vscode|, siden dere da får muligheten til å bruke det forhåndsdefinerte utviklingsmiljøet vi har laget til dere der.
+
+Denne oppgaven er krevende, og det er ikke nødvendigvis å finne alle feil som er det viktigste. Meninge er at dere skal bruke litt tid på å bli kjent med de ulike verktøyene dere har til debugging i VSCode, slik at ting blir lettere når dere skal ta i bruk dette senere.
