@@ -9,28 +9,36 @@ I denne øvingen får dere utlevert noen \verb|.c| og \verb|.h|-filer under \ver
 \begin{center}
  \begin{tabular}{|p{8.5cm} p{5.5cm}|} 
  \hline
- \textbf{Filer} & \textbf{Skal denne filen endres?}  \\ [0.5ex] 
+ \textbf{Filer} & \textbf{Skal filen(e) endres?}  \\ [0.5ex] 
  \hline\hline
-  \verb|source/break.c| & nei  \\ 
+  \verb|source/break.c| & Nei  \\ 
  \hline
- \verb|source/break2.c| & nei  \\ 
+ \verb|source/break2.c| & Nei  \\ 
  \hline
- \verb|source/break2.h| & nei  \\ 
+ \verb|source/break2.h| & Nei  \\ 
  \hline
- \verb|source/inspect.c| & nei  \\ 
+ \verb|source/inspect.c| & Nei  \\ 
  \hline
- \verb|source/step.c| & nei  \\ 
+ \verb|source/step.c| & Nei  \\ 
  \hline
-  \verb|source/until.c| & nei  \\ 
+  \verb|source/until.c| & Nei  \\ 
  \hline
-  \verb|source/trace.c| & nei  \\ 
+  \verb|source/trace.c| & Nei  \\ 
  \hline
-  \verb|source/seg1.c| & nei  \\ 
+  \verb|source/seg1.c| & Nei  \\ 
  \hline
-  \verb|source/seg2.c| & nei  \\ 
+  \verb|source/seg2.c| & Nei  \\ 
  \hline
-  \verb|source/leak.c| & nei  \\ 
+  \verb|source/leak.c| & Nei  \\
  \hline
+  \verb|Makefile| & Nei \\
+ \hline
+  \verb|debugging_vscode/character_count.c| & Jøss, ja! \\
+ \hline
+  \verb|debugging_vscode/.vscode/*| & Ja \\
+ \hline
+  \verb|debugging_vscode/Makefile| & Helst ikke \\
+   \hline
   \verb|Main/*| & Nei  \\ 
  \hline
   \verb|.github/*| & Nei \\
@@ -50,13 +58,10 @@ I denne øvingen, brukes \verb|gcc| som har denne muligheten. I tillegg, trenger
 I utgangspunktet har ikke GDB et pent grafisk grensesnitt. Det er derimot mange \textit{wrapper}s som brukes - mest kjent er programvaren DDD. I denne øvingen skal vi bruke en \textit{semi-grafisk} visning som kommer med GDB, kalt TUI (\textbf{T}ext \textbf{U}ser \textbf{I}nterface). Denne visningen kan benyttes ved å starte \verb|gdb| med flagget \verb|-tui|, eller ved å trykke \verb|Ctrl + X, A| fra en vanlig \verb|gdb|-instans.
 
 
-I tillegg til vanlig debugging av \verb|C|-kode, har det blitt lagt til et appendiks om debugging av mikrokontrollere i appendiks \ref{app:debugg-micro}. Dette blir viktig for mikrokontroller-laben.
+\section{Bruk av KI i programvareutvikling}\label{sec:3-bruk-av-KI}
+Angående bruk av kunstig intelligens (KI) i programvareutvikling, kan man skille mellom to ulike bruksvarianter: åpen-sløyfe-bruk, og lukket-sløyfe-bruk. I kybernetikken introduseres vi for mange ulike redskap som vi kan benytte oss av til problemløsning, for eksempel Fourier-analyse og PID-regulatorer. KI kan også sees på som et slikt redskap, og i likhet med de andre redskapene, er vi nødt til å vite hvordan man faktisk skal bruke det. På samme måte som en kalkulator eller en datamaskin kan regne ut regnestykker for oss, kan KI hjelpe oss å løse problemer som ellers hadde vært tidskrevende. Det som skiller KI og en kalkulator er innsikt i hvordan redskapene fungerer. Vi stoler på en kalkulator siden vi kan reprodusere og bekrefte informasjonen den gir oss via matematikk og algoritmer vi har lært gjennom utdanningen vår. På samme måte er det viktig at vi er klar over hvilken variant av KI vi bruker, og sørger for å bekrefte informasjonen KI-en gir oss for å lukke sløyfen. Det spiller ingen rolle hvor rett kalkulatoren regner om vi skriver inn feil input, og det samme gjelder KI, spesielt av typen tekstgenererende språkmodeller som OpenAI sin \verb|ChatGPT| og Meta sin \verb|Llama|. Kort fortalt prøver språkmodeller å forutsi hva neste ord bør være gitt en tekststreng. Store språkmodeller er ikke-deterministiske, og har tendenser til å \verb|hallusinere|, altså at språkmodellen oppgir falsk informasjon som fakta. Hold derfor et kritisk blikk til hallusineringshyppigheten til språkmodellene dere bruker. Vi anbefaler at dere tar en titt på \href{https://huggingface.co/spaces/vectara/leaderboard}{denne siden} med hallusineringshyppigheter før dere tar i bruk KI i dette faget.
 
-
-
-\section{Bruk av KI i programvareutvikling}
-
-Noe her om Closed- og open-loop bruk av KI.\label{sec:3-bruk-av-KI}
+Oppsummert forventer vi to ting fra studenter i dette faget: at dere ikke bruker KI i åpen-sløyfe, og at dere alltid har et kritisk blikk på hva som genereres. I tillegg forventer vi at dere er ærlige om bruk av KI, og ikke angir arbeidet til KI som deres eget. 
 
 \end{alphasection}
 
