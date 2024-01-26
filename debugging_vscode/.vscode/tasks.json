@@ -5,8 +5,6 @@
             "label": "C/C++: gcc build active c-file",
             "command": "/usr/bin/gcc", // Compiler path
             "args": [ // Compiler flags
-                "-fcolor-diagnostics",
-                "-fansi-escape-codes",
                 "-g",
                 "${file}",
                 "-o",
