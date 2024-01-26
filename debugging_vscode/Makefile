@@ -14,7 +14,7 @@ CFLAGS += -Wall -Werror -std=gnu99
 
 default:
 	@echo Compiling project
-	$(QUIET)$(CC) $(CFLAGS) $(SOURCES) -o $(BUILD_DIR)/main
+	$(CC) $(CFLAGS) $(SOURCES) -o $(BUILD_DIR)/main.o
 
 	
 debug:
