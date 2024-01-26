@@ -19,7 +19,7 @@ default:
 	
 debug:
 	@echo Compiling project with debug
-	$(CC) $(CFLAGS) -ggdb -Og $(SOURCES) -o $(BUILD_DIR)/main.o
+	$(CC) $(CFLAGS) -ggdb -Og -g3 $(SOURCES) -o $(BUILD_DIR)/main.o
 
 clean:
 	$(QUIET)rm $(BUILD_DIR)/main.o
