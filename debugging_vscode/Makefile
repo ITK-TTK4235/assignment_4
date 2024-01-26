@@ -7,8 +7,8 @@ CC	:= gcc
 
 QUIET := @
 
-# Throw errors for warnings and set GNU dialect to ISO C99
-CFLAGS += -Wall -Werror -std=gnu99
+# Set GNU dialect to ISO C99
+CFLAGS += -std=gnu99
 
 .PHONY: default debug clean
 
