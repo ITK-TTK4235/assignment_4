@@ -1,4 +1,4 @@
-\section{Oppgave - Grunnleggende debugging med \texttt{gdb} (obligatorisk)}\label{sec:3-oppgave}
+\section{Oppgave (100 \%) - Grunnleggende debugging med \texttt{gdb}}\label{sec:3-oppgave}
 
 Denne øvingen er strukturert som en walkthrough. Gjennom øvingen skal dere kompilere feilaktige kodesnutter og debugge den med \verb|gdb|. Ofte vil feilene være veldig opplagt, men motstå allikevel fristelsen til å skippe over. Hensikten med denne øvingen, er at dere skal vite hvordan dere bruker GDB, så for å få godkjent, må dere vise en studass at dere til en viss grad forstår hva som skjer i denne øvingen. Terskelen er ikke altfor høy, og dere får ganske greit godkjent om dere viser at dere forstår hvordan dere kan debugge et vilkårlig program med GDB.
 
@@ -396,6 +396,7 @@ Dette avsnittet vil gi dere en liste over noen nyttige utvidelser, altså \texti
 \begin{itemize}
     \item \verb|C/C++|: \href{https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools}{mer info her}
     \item \verb|C/C++ Extension Pack|: \href{https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack}{mer info her}
+    \item \verb|WSL|: \href{https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl}{mer info her}
     \item \verb|Clangd|: \href{https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd}{mer info her}
     \item \verb|GitLens|: \href{https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens}{mer info her}
     \item \verb|VSCode Icons|: \href{https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons}{mer info her}
@@ -403,7 +404,7 @@ Dette avsnittet vil gi dere en liste over noen nyttige utvidelser, altså \texti
     
 \end{itemize}
 
-De utdelte konfigurasjonsfilene tar i bruk Microsofts \verb|C/C++|, men dere har muligheten til å teste ulike kombinasjoner for å se hva som funker best for dere. Det er verdt å bemerke seg at ikke alle extensions er kompatible med hverandre.
+De utdelte konfigurasjonsfilene tar i bruk Microsofts \verb|C/C++|, men dere har muligheten til å teste ulike kombinasjoner for å se hva som funker best for dere. Dersom man bruker \verb|WSL| er det også lurt å skaffe seg \verb|WSL|-utvidelsen til VSCode. Det er verdt å bemerke seg at ikke alle extensions er kompatible med hverandre.
 
 \subsubsection{Utvidelsen C/C++}
 Utvidelsen C/C++ for VSCode er et nyttig verktøy som er utviklet for å forenkle utvikling i C og C++. Det tilbyr funksjoner som IntelliSense for automatisk kodeforslag, feilsøkingsfunksjoner og enkel navigering. Utvidelsen støtter C/C++-utvikling på tvers av plattformer (MacOS/Windows/Linux),. Utvidelsen integreres med de bygge- og feilsøkingsverktøyene du velger, slik som \verb|gcc|, \verb|gdb|, \verb|lldb| og \verb|clang|. Se \href{https://code.visualstudio.com/docs/cpp/faq-cpp}{denne lenken} for mer informasjon.
