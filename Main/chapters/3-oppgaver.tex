@@ -247,7 +247,7 @@ Kall nå \verb|backtrace|. Dette vil skrive ut kall-stacken til programmet - alt
 Helt på bunnen vil dere se at ugangspunktet vårt var \verb|main|, som så kalte \verb|myst_func1| med \verb|level|-parameter lik 10. Deretter vet vi at en rekke kall til forskjellige \verb|myst_func|-funksjoner blir gjort, før vi kommer til \verb|myst_func_1| som må ha endret \verb|global_value|. En slik utskrift av kall-stacken kan gi en veldig god indikasjon på hvor ting går galt.
 
 
-Om man har lyt på en spesifikk \textit{stack-frame} kan GDB også gi oss det. En stackframe er ett nivå på kall-stacken, og inneholder informasjon om hvilken funksjon som ble kalt, og hvilke argumenter som ble gitt. Kall \verb|frame| for å skrive ut øverste stack-frame, eller for eksempel \verb|frame 8| for å skrive ut en stack-frame 8 nivåer ned:
+Om man har lyst på en spesifikk \textit{stack-frame} kan GDB også gi oss det. En stackframe er ett nivå på kall-stacken, og inneholder informasjon om hvilken funksjon som ble kalt, og hvilke argumenter som ble gitt. Kall \verb|frame| for å skrive ut øverste stack-frame, eller for eksempel \verb|frame 8| for å skrive ut en stack-frame 8 nivåer ned:
 
 \begin{lstlisting}[mathescape=true,keywordstyle=\color{black}]
 (gdb) frame 6
