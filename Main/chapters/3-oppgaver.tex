@@ -14,7 +14,7 @@ Breakpoints er den mest brukte-, og en av de nyttigste egenskapene til en debugg
 
 Av disse er vanlig \textit{breakpoints} desidert av mest nytte. Selv om \textit{watch}- og \textit{catchpoints} av og til kan være praktiske å ha, blir de fort ubrukelige dersom man debugger kode med flere tråder.
 
-For å demonstrere hvordan man vanligvis bruker \textit{breakpoints}, skal vi bruke programmet \verb|break|. Kall \verb|make break| for å kompilere, og \verb|gdb -tui break| (i samme mappe som programmet \verb|break|) for å starte GDB med programmet vårt. 
+For å demonstrere hvordan man vanligvis bruker \textit{breakpoints}, skal vi bruke programmet \verb|break|. Kall \verb|make break| for å kompilere, og \verb|gdb -tui break| (i samme mappe som programmet \verb|break|) for å starte GDB med programmet vårt. Dersom det \verb|make| ikke fungerer slik det skal kan det være på grunn av at det mangler noen rettigheter for brukeren. Prøv derfor \verb|sudo make| i stedet.
 
 \textit{Breakpoints} kan settes på forskjellige måter. Om man nå skriver \verb|break local_call| setter man et \textit{breakpoint} på starten av funksjonen \verb|local_call|. Dersom man nå kaller \verb|break 9| setter man et \textit{breakpoint} på kodelinje 9. Gitt at du nå har gjort alt dette, kan vi kalle \verb|run| og få noe tilsvarende som dette:
 
