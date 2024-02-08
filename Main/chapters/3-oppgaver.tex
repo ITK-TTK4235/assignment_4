@@ -172,7 +172,7 @@ hvor \verb|$|-tegnet brukes som en referanse til GDB sin variabelhistorie. Dette
 
 GDB har også en kommando kalt \verb|display|, som fungerer på samme måte som \verb|print|, men automatisk skriver ut en variabel hver gang et \textit{breakpoint} aktiveres, så lenge variabelen finnes på øverste stack-frame. For å stoppe en aktiv \verb|display| brukes kommandoen \verb|undisplay| med ID-en til \verb|display|-et.
 
-For å prøve ut \verb|display| kan dere kalle \verb|break 15| for å opprette et \textit{breakpoint} ved linja \verb|dyn_array[i] = i + 1;|, etterfulgt av \verb|display *dyn_array@5|, og til slutt \verb|run| for å starte programmet på nytt. Hver gang dere treffer break-pointet vil dere se at ett nytt element er blitt satt i \verb|dyn_array|. For å slippe å skrive \verb|continue| mange ganger kan dere forresten bare trykke enter for å repetere siste kommando som ble kjørt.
+For å prøve ut \verb|display| kan dere kalle \verb|break 14| for å opprette et \textit{breakpoint} ved linja \verb|dyn_array[i] = i + 1;|, etterfulgt av \verb|display *dyn_array@5|, og til slutt \verb|run| for å starte programmet på nytt. Hver gang dere treffer break-pointet vil dere se at ett nytt element er blitt satt i \verb|dyn_array|. For å slippe å skrive \verb|continue| mange ganger kan dere forresten bare trykke enter for å repetere siste kommando som ble kjørt.
 
 \subsection{\texttt{step} og \texttt{next}}
 
