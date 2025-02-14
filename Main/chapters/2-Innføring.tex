@@ -53,7 +53,7 @@ Denne øvingen handler om strukturert debugging med GDB (\textbf{G}NU \textbf{D}
 
 GDB fungerer ved å kjøre maskinkoden til et kompilert program i bakgrunnen, og vise hvilke kodelinjer dette svarer til i forgrunnen. Ved vanlig kompilering og lenking kastes \textit{symboltabellen}, så vi trenger en kompilator som kan ivareta denne under kompilering.
 
-I denne øvingen, brukes \verb|gcc| som har denne muligheten. I tillegg, trenger man debuggeren selv - \verb|gdb|. Begge disse skal være installert på Sanntidsalen. Installasjon av både \verb|gcc| og \verb|gdb| er rett fram på Linux og Mac, mens på Windows er MinGW den enkleste måten å kjøre programvaren.
+I denne øvingen, brukes \verb|gcc| som har denne muligheten. I tillegg, trenger man debuggeren selv, nemlig \verb|gdb|. Begge disse skal være installert på Sanntidsalen. Installasjon av både \verb|gcc| og \verb|gdb| er rett fram på Linux og Mac, mens på Windows er MinGW den enkleste måten å kjøre programvaren.
 
 I utgangspunktet har ikke GDB et pent grafisk grensesnitt. Det er derimot mange \textit{wrapper}s som brukes - mest kjent er programvaren DDD. I denne øvingen skal vi bruke en \textit{semi-grafisk} visning som kommer med GDB, kalt TUI (\textbf{T}ext \textbf{U}ser \textbf{I}nterface). Denne visningen kan benyttes ved å starte \verb|gdb| med flagget \verb|-tui|, eller ved å trykke \verb|Ctrl + X, A| fra en vanlig \verb|gdb|-instans.
 
