@@ -1,10 +1,10 @@
-\section{Oppgave (100 \%) - Grunnleggende debugging med \texttt{gdb}}\label{sec:3-oppgave}
+\section{Oppgave (50 \%) - Grunnleggende debugging med \texttt{gdb}}\label{sec:3-oppgave}
 
 Denne øvingen er strukturert som en walkthrough. Gjennom øvingen skal dere kompilere feilaktige kodesnutter og debugge den med \verb|gdb|. Ofte vil feilene være veldig opplagt, men motstå allikevel fristelsen til å skippe over. Hensikten med denne øvingen, er at dere skal vite hvordan dere bruker GDB, så for å få godkjent, må dere vise en studass at dere til en viss grad forstår hva som skjer i denne øvingen. Terskelen er ikke altfor høy, og dere får ganske greit godkjent om dere viser at dere forstår hvordan dere kan debugge et vilkårlig program med GDB.
 
 \subsection{Breakpoints}
 
-Breakpoints er den mest brukte-, og en av de nyttigste egenskapene til en debugger. De tillater brukeren å midlertidig stoppe kodekjøringen for å inspisere variabler, og liste opp hvordan man kom til linjen man stoppet på. GDB operer med tre forskjellige typer breakpoints:
+Breakpoints er den mest brukte, og en av de nyttigste egenskapene til en debugger. De tillater brukeren å midlertidig stoppe kodekjøringen for å inspisere variabler, og liste opp hvordan man kom til linjen man stoppet på. GDB operer med tre forskjellige typer breakpoints:
 
 \begin{itemize}
     \item \textit{Breakpoint} stopper kodekjøringen når man kommer til en spesifikk linje.
@@ -364,7 +364,7 @@ Dersom man kaller \verb|make leak| fra kommandolinjen for å kompilere programme
 
 Dette er en oppsummering av \verb|heap|-forbruk i løpet av programmets levetid. Som man kan se, har vi mistet 48 bytes fordi vi ikke frigjør allokeringen vi gjør. Valgrind hjelper oss også med å se hvor lekkasjen skjer; vi kan se av \textit{stack-tracen} at vi fra \verb|main| kaller \verb|create_array|, som deretter kaller \verb|malloc| uten at \verb|free| kalles noe sted.
 
-\section{Oppgave - Programvareutvikling i VSCode (anbefalt)}
+\section{Oppgave - Programvareutvikling i VSCode (50 \%)}
 
 Selv om det det er nyttig å kunne bruke verktøy som GDB og Valgrind i terminal foregår majoriteten av all programvareutvikling i dag i moderne grensesnitt for kildekoderedigering. I denne oppgaven skal vi steg-for-steg gå gjennom stegene for hvordan man installerer og setter opp et moderne utviklingsmiljø i kildekoderedigeringsverktøyet {\it VSCode}. 
 
