@@ -148,13 +148,6 @@ $\texttt{\$}$3 = {1, 2, 3, 4, 5}
 
 Dette betyr bare at vi skal dereferere pekeren, og ta 5 elementer, og skrive dem ut som en tabell. Det er ikke veldig ofte man trenger denne syntaksen, men den kan være veldig nyttig i noen sammenhenger.
 
-I tillegg, kan GDB også skrive ut structs:
-
-\begin{lstlisting}[mathescape=true,keywordstyle=\color{black}]
-(gdb) print PID
-$\texttt{\$}$4 = {kp = 100, ki = 0, kd = 0}
-\end{lstlisting}
-
 Kanskje det mest nyttigste med GDB er at den kan endre variabler underveis ved å bruke kommandoen \verb|set|:
 
 \begin{lstlisting}[mathescape=true,keywordstyle=\color{black}]
@@ -191,7 +184,7 @@ Altså: når du kaller \verb|step| vil den kun gå inn i en implementasjon derso
 
 Om man kommer inn i en løkke, eller havner i en funksjon som man er sikker på er feilfri, så er det mulig å kunne hoppe ut av den. For dette formålet har GDB kommandoene \verb|until| og \verb|finish|. Kall først \verb|make until|, og deretter \verb|gdb -tui until|. Inne i GDB oppretter dere et \textit{breakpoint} for \verb|main| ved å kalle \verb|break main|.
 
-Hvis dere nå kaller \verb|run| vi dere stoppe i toppen av \verb|for|-løkka, fordi dette er den første interessante kodelinjen i \verb|main|. Dersom man nå ønsker å hoppe over løkken, og fortsette rett etter den, kan man kalle \verb|until| fire ganger. Dere vil se at GDB nå stopper på linje 21 som er rett før \verb|pointless_function|-kallet.
+Hvis dere nå kaller \verb|run| vi dere stoppe i toppen av \verb|for|-løkka, fordi dette er den første interessante kodelinjen i \verb|main|. Dersom man nå ønsker å hoppe over løkken, og fortsette rett etter den, kan man kalle \verb|until| tre ganger. Dere vil se at GDB nå stopper på linje 21 som er rett før \verb|pointless_function|-kallet.
 
 Kommandoen \verb|until| skal hoppe til kodelinjen som er 1 større enn nåværende kodelinje. Grunnen til at dere måtte kalle \verb|until| tre ganger istedenfor en, er at GDB arbeider med maskinkoden til programmet. I C-kode, ser det ut som om at vi gjør en test i starten av løkken - men i den ferdigkompilerte koden skjer dette faktisk i bunnen av løkken. Dette er ikke veldig viktig å huske på, men det er greit å vite dersom en kommando tilsynelatende oppfører seg litt rart.
 
@@ -414,3 +407,5 @@ Utvidelsen C/C++ for VSCode er et nyttig verktøy som er utviklet for å forenkl
 Tidligere i denne øvingen har vi introdusert dere for ulike verktøy for debugging i terminalen, deriblant \textit{breakpoints}, \textit{watchpoints} og \textit{catchpoints}. Disse verktøyene, pluss flere, finnes også ved debugging i det grafiske brukergrensesnittet til VSCode. I denne oppgaven vil dere bruke dette til å debugge den utleverte filen \verb|character_count.c| for å utforske hvordan debugging gjøres i VSCode. Denne \verb|C|-filen som finnes i den utleverte koden i GitHub, under \verb|debugging_vscode|. Koden skal i utgangspunktet telle antall tomme og ikke-tomme \textit{characters} i en tekststreng som er definert i koden, men på grunn av logiske feil i koden fungerer den ikke. Vi henviser dere til \href{https://code.visualstudio.com/docs/editor/debugging}{VSCode sin dokumentasjon for debugging} for å løse denne oppgaven, og vi ber dere om å åpne VSCode i mappen \verb|debugging_vscode|, siden dere da får muligheten til å bruke det forhåndsdefinerte utviklingsmiljøet vi har laget til dere der.
 
 Denne oppgaven er krevende, og det er ikke nødvendigvis å finne alle feil som er det viktigste. Meningen er at dere skal bruke litt tid på å bli kjent med de ulike verktøyene dere har til debugging i VSCode, slik at ting blir lettere når dere skal ta i bruk dette senere.
+
+For å få denne oppgaven godkjent holder det å vise frem for en læringsassistent noen av feilene dere oppdaget i koden, samt hvordan dere oppdaget dem.
